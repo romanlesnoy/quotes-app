@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
+// import PropTypes from "prop-types";
 
 import classes from "./NewCommentForm.module.css";
 
-const NewCommentForm = (props) => {
+const NewCommentForm = () => {
     const commentTextRef = useRef();
 
     const submitFormHandler = (event) => {
@@ -25,5 +26,9 @@ const NewCommentForm = (props) => {
         </form>
     );
 };
+
+// NewCommentForm.propTypes = {
+
+// }
 
 export default NewCommentForm;

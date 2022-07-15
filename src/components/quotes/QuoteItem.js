@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 import classes from "./QuoteItem.module.css";
 
 const QuoteItem = (props) => {
@@ -9,9 +12,16 @@ const QuoteItem = (props) => {
                 </blockquote>
                 <figcaption>{props.author}</figcaption>
             </figure>
-            <a className="btn">View Fullscreen</a>
+            <a href="?#" className="btn">
+                View Fullscreen
+            </a>
         </li>
     );
+};
+
+QuoteItem.propTypes = {
+    text: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired
 };
 
 export default QuoteItem;

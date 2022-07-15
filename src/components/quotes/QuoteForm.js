@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
+import PropTypes from "prop-types";
 
 import Card from "../ui/Card";
 import LoadingSpinner from "../ui/LoadingSpinner";
@@ -42,6 +43,11 @@ const QuoteForm = (props) => {
             </form>
         </Card>
     );
+};
+
+QuoteForm.propTypes = {
+    onAddQuote: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired
 };
 
 export default QuoteForm;

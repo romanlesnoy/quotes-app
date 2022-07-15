@@ -1,3 +1,6 @@
+import React from "react";
+import PropTypes from "prop-types";
+
 import classes from "./CommentItem.module.css";
 
 const CommentItem = (props) => {
@@ -6,6 +9,10 @@ const CommentItem = (props) => {
             <p>{props.text}</p>
         </li>
     );
+};
+
+CommentItem.propTypes = {
+    text: PropTypes.string
 };
 
 export default CommentItem;
