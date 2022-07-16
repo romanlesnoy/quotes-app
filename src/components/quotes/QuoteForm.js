@@ -79,7 +79,7 @@ const QuoteForm = (props) => {
 
 QuoteForm.propTypes = {
     onAddQuote: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool
+    isLoading: PropTypes.bool.isRequired
 };
 
 export default QuoteForm;
