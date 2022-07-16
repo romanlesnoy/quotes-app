@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import classes from "./QuoteItem.module.css";
@@ -12,14 +13,15 @@ const QuoteItem = (props) => {
                 </blockquote>
                 <figcaption>{props.author}</figcaption>
             </figure>
-            <a href="?#" className="btn">
+            <Link to={`quotes/${props.id}`} className="btn">
                 View Fullscreen
-            </a>
+            </Link>
         </li>
     );
 };
 
 QuoteItem.propTypes = {
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired
 };
