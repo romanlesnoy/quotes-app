@@ -1,4 +1,4 @@
-# Dummy Order Food App
+# Routes Quotes App
 
 Демо приложения, с карточками цитат
 
