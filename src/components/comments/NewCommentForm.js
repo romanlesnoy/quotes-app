@@ -1,21 +1,42 @@
-import React, { useRef } from "react";
-// import PropTypes from "prop-types";
+import React, { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
+import LoadingSpinner from "../UI/LoadingSpinner";
+import useHttp from "../../hooks/use-http";
+import { addComment } from "../../lib/api";
 import classes from "./NewCommentForm.module.css";
 
-const NewCommentForm = () => {
+const NewCommentForm = (props) => {
     const commentTextRef = useRef();
+
+    const { sendRequest, status, error } = useHttp(addComment);
+
+    const { onAddedComment, quoteId } = props;
+
+    useEffect(() => {
+        if (status === "completed" && !error) {
+            onAddedComment();
+        }
+    }, [status, error, onAddedComment]);
 
     const submitFormHandler = (event) => {
         event.preventDefault();
 
-        // optional: Could validate here
+        const enteredtext = commentTextRef.current.value;
 
-        // send comment to server
+        sendRequest({
+            commentData: { text: enteredtext },
+            quoteId: quoteId
+        });
     };
 
     return (
         <form className={classes.form} onSubmit={submitFormHandler}>
+            {status === "pending" && (
+                <div className="centered">
+                    <LoadingSpinner />
+                </div>
+            )}
             <div className={classes.control} onSubmit={submitFormHandler}>
                 <label htmlFor="comment">Your Comment</label>
                 <textarea id="comment" rows="5" ref={commentTextRef}></textarea>
@@ -27,8 +48,9 @@ const NewCommentForm = () => {
     );
 };
 
-// NewCommentForm.propTypes = {
-
-// }
+NewCommentForm.propTypes = {
+    onAddedComment: PropTypes.func.isRequired,
+    quoteId: PropTypes.string.isRequired
+};
 
 export default NewCommentForm;
