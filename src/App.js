@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Redirect, Routes } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import AllQuotes from "./pages/AllQuotes";
@@ -10,23 +10,15 @@ import NotFound from "./pages/NotFound";
 function App() {
     return (
         <Layout>
-            <Switch>
-                <Route exact path="/">
+            <Routes>
+                <Route path="/">
                     <Redirect to="/quotes" />
                 </Route>
-                <Route exact path="/quotes">
-                    <AllQuotes />
-                </Route>
-                <Route path="/quotes/:quoteId">
-                    <QuoteDetail />
-                </Route>
-                <Route path="/new-quote">
-                    <NewQuote />
-                </Route>
-                <Route path="*">
-                    <NotFound />
-                </Route>
-            </Switch>
+                <Route path="/quotes" element={<AllQuotes />} />
+                <Route path="/quotes/:quoteId" element={<QuoteDetail />} />
+                <Route path="/new-quote" element={<NewQuote />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
         </Layout>
     );
 }
