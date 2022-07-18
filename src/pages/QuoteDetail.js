@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, Link, Outlet } from "react-router-dom";
+import { useParams, Outlet } from "react-router-dom";
 
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
@@ -31,28 +31,21 @@ const QuoteDetail = () => {
     }
 
     if (error) {
-        return <p className="centered focused">{error}</p>;
+        return <p className="centered">{error}</p>;
     }
 
     if (!loadedQuote.text) {
-        return <p className="centered focused">No quote found!</p>;
+        return <p>No quote found!</p>;
     }
 
     return (
-        <section>
+        <React.Fragment>
             <HighlightedQuote
                 text={loadedQuote.text}
                 author={loadedQuote.author}
             />
-
-            <div className="centered">
-                <Link to="comments" className="btn--flat">
-                    Load Comments
-                </Link>
-            </div>
-
             <Outlet />
-        </section>
+        </React.Fragment>
     );
 };
 
