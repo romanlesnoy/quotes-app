@@ -1,5 +1,4 @@
-import React, { useRef, useState, Fragment } from "react";
-import { Prompt } from "react-router-dom";
+import React, { useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import Card from "../UI/Card";
@@ -7,7 +6,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
-    const [isEntering, setIsEntering] = useState(false);
+    // const [isEntering, setIsEntering] = useState(false);
 
     const authorInputRef = useRef();
     const textInputRef = useRef();
@@ -23,27 +22,27 @@ const QuoteForm = (props) => {
         props.onAddQuote({ author: enteredAuthor, text: enteredText });
     }
 
-    const finishingEnteringHandler = () => {
-        setIsEntering(false);
-    };
+    // const finishingEnteringHandler = () => {
+    //     setIsEntering(false);
+    // };
 
-    const formFocusHandler = () => {
-        setIsEntering(true);
-    };
+    // const formFocusHandler = () => {
+    //     setIsEntering(true);
+    // };
 
     return (
         <Fragment>
-            <Prompt
+            {/* <Prompt
                 when={isEntering}
                 message={() =>
                     "Are your sure you want to leave? All your entered data will be lost?"
                 }
-            />
+            /> */}
             <Card>
                 <form
                     className={classes.form}
                     onSubmit={submitFormHandler}
-                    onFocus={formFocusHandler}
+                    // onFocus={formFocusHandler}
                 >
                     {props.isLoading && (
                         <div className={classes.loading}>
@@ -65,7 +64,7 @@ const QuoteForm = (props) => {
                     </div>
                     <div className={classes.actions}>
                         <button
-                            onClick={finishingEnteringHandler}
+                            // onClick={finishingEnteringHandler}
                             className="btn"
                         >
                             Add Quote
