@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
-import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
+import { useParams, Link, Outlet } from "react-router-dom";
 
-import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useHttp from "../hooks/use-http";
 import { getSingleQuote } from "../lib/api";
 
 const QuoteDetail = () => {
-    const match = useRouteMatch();
     const params = useParams();
 
     const { quoteId } = params;
@@ -46,16 +44,14 @@ const QuoteDetail = () => {
                 text={loadedQuote.text}
                 author={loadedQuote.author}
             />
-            <Route exact path={match.path}>
-                <div className="centered">
-                    <Link to={`${match.url}/comments`} className="btn--flat">
-                        Load Comments
-                    </Link>
-                </div>
-            </Route>
-            <Route path={`${match.path}/comments`}>
-                <Comments />
-            </Route>
+
+            <div className="centered">
+                <Link to="comments" className="btn--flat">
+                    Load Comments
+                </Link>
+            </div>
+
+            <Outlet />
         </section>
     );
 };
