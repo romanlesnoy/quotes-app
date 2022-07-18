@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect, Routes } from "react-router-dom";
+import { Route, Navigate, Routes } from "react-router-dom";
 
 import Layout from "./components/layout/Layout";
 import AllQuotes from "./pages/AllQuotes";
@@ -11,9 +11,7 @@ function App() {
     return (
         <Layout>
             <Routes>
-                <Route path="/">
-                    <Redirect to="/quotes" />
-                </Route>
+                <Route path="/" element={<Navigate replace to="/quotes" />} />
                 <Route path="/quotes" element={<AllQuotes />} />
                 <Route path="/quotes/:quoteId" element={<QuoteDetail />} />
                 <Route path="/new-quote" element={<NewQuote />} />
